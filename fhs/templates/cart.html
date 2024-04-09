@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopping Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+
+        tfoot td {
+            font-weight: bold;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+         button li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            background-color: transparent;
+            border: none;
+            text-align: left;
+            width: 100%;
+        }
+
+        button li:last-child {
+            border-bottom: none;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Shopping Cart</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through the cart items and display each item -->
+            {% for item in cart_items %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.subtotal }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Total</td>
+                <td>{{ cart_total }}</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <form action="/checkout" method="POST">
+        <!-- Add checkout form fields here, such as customer details and payment information -->
+       <li><a href="{% url 'checkout' %}">checkout</a></li>
+    </form>
+</body>
+</html>
